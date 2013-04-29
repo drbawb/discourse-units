@@ -1,0 +1,15 @@
+[Unit]
+Description=Discourse Sidekiq
+After=syslog.target
+After=network.target
+
+[Service]
+Type=simple
+User=http
+Group=http
+WorkingDirectory=/var/www/discourse
+ExecStart=/srv/http/.rbenv/shims/bundle exec sidekiq -e production
+PIDFile=/var/www/discourse/log/sk.pid
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+[Unit]
+Description=Discourse Clockwork
+After=syslog.target
+After=network.target
+[Service]
+Type=simple
+User=http
+Group=http
+Environment=RAILS_ENVIRONMENT=production
+WorkingDirectory=/var/www/discourse
+ExecStart=/srv/http/.rbenv/shims/bundle exec clockwork config/clock.rb
+PIDFile=/var/www/discourse/log/cw.pid
+
+[Install]
+WantedBy=multi-user.target

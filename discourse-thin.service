@@ -1,0 +1,19 @@
+[Unit]
+Description=Discourse Thin Production thin.prod.sock
+After=syslog.target
+After=network.target
+After=discourse-clockwork.service
+After=discourse-sidekiq.service
+
+[Service]
+Type=forking
+PIDFile=tmp/pids/thin.pid
+User=http
+Group=http
+Environment=RUBY_GC_MALLOC_LIMIT=90000000
+WorkingDirectory=/var/www/discourse
+ExecStart=/srv/http/.rbenv/shims/bundle exec thin start -e production -s 3 --socket tmp/sockets/thin.sock
+ExecStop=/srv/http/.rbenv/shims/bundle exec thin stop -s 3 --socket tmp/sockets/thin.sock 
+
+[Install]
+WantedBy=multi-user.target
