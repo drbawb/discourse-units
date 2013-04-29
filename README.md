@@ -40,4 +40,4 @@ This will need to be changed to suit your configuration.
 If you have Ruby installed system-wide, you can probably just use `bundle exec` without the fully qualified path.
 Otherwise you will need to either (A) set the fully qualified path to your `Bundler` executable, or (B) source the environment variables which configure your Ruby version manager.
 
- 
+In addition: the path for the PIDFile will likely be wrong. -- You can set this to any writable directory.
